@@ -51,29 +51,50 @@ ListNode *CreateList(vector<int> data) {
     for (auto i = mem_addr.begin(); i != mem_addr.end(); i++) {
         (*i)->next = *(i + 1);
     }
-    (*(mem_addr.end()-1))->next= nullptr;
+    (*(mem_addr.end() - 1))->next = nullptr;
     return mem_addr[0];
 
 
 }
 
-int main() {
-    vector<int> data = {1,2,6,3,4,5,6};
-    int val =6;
-    ListNode* head = CreateList(data);
-    PrintList(head);
-
-    ListNode* p = head;
-    while(p!= nullptr){
-        if(p->val==val){
-            if(p->next= nullptr)
-            p->next=p->next->next;
-        }
-        if(p->next== nullptr){
-            break;
-        }
-        p=p->next;
+ListNode *Problem(ListNode *head) {
+    if (head == nullptr) {
+        return head;
     }
+    if (head->next == nullptr) {
+        return head;
+
+    }
+    if (head->next->next == nullptr) {
+        ListNode *tmp = head->next;
+        tmp->next = head;
+        head->next = nullptr;
+        return tmp;
+
+
+    }
+    
+
+    ListNode *p1 = head, *p2 = head->next, *p3 = head->next->next;
+    while (true) {
+        p2->next = p1;
+        if (p3 == nullptr) break;
+        p1 = p2;
+        p2 = p3;
+        p3 = p3->next;
+
+    }
+    head->next= nullptr;
+    return p2;
+
+}
+
+int main() {
+    vector<int> data = {1, 2,3,4,5};
+    ListNode *head = CreateList(data);
     PrintList(head);
+    ListNode *res = Problem(head);
+    PrintList(res);
+
 
 }
