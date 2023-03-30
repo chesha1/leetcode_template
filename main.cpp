@@ -1,9 +1,10 @@
 #include <iostream>
+#include <iterator>
 #include <vector>
 #include <set>
+#include <unordered_set>
 #include <algorithm>
 #include <string>
-#include <map>
 #include "utils.h"
 
 using namespace std;
@@ -46,11 +47,20 @@ ListNode *createList(vector<int> data) {
 }
 
 
-
+string reverseLeftWords(string s, int n) {
+    string tmp(s, 0, n);
+    s = s.substr(n);
+    s.append(tmp);
+    return s;
+}
 
 int main() {
-
-
+    string s1 = "abcdefg";
+    string s2(s1, 0, 3);
+    string s3 = s1.substr(3);
+    string s4 = s1.substr(3, 5);
+    s1.append(s2);
 
 
 }
+

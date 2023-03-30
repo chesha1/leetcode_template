@@ -8,15 +8,37 @@
 #include <iomanip>
 #include <map>
 #include <string>
+#include <unordered_map>
 
 // print contents of STL container
 // print vector, set
 template<typename T>
-void printStl(T x) {
+void printStl(T x, bool end = true) {
+    if (x.size() == 0) return;
     for (auto i = x.begin(); i != x.end(); i++) {
-        std::cout << *i << "    ";
+        auto tmp = i;
+        tmp++;
+        if (tmp == x.end()) std::cout << *i;
+        else std::cout << *i << "    ";
     }
-    std::cout << std::endl;
+    if (end == true) std::cout << std::endl;
+
+}
+//print contents of 2D STL container
+//vector<vector<int>>
+template<typename T>
+void printStl2D(T x) {
+    if (x.size() == 0) return;
+    std::cout << "[";
+    for (auto i = x.begin(); i != x.end(); i++) {
+        std::cout << "[";
+        printStl(*i, false);
+        auto tmp = i;
+        tmp++;
+        if (tmp == x.end()) std::cout << "]";
+        else std::cout << "]," << std::endl;
+    }
+    std::cout << "]" << std::endl;
 }
 
 // print map
@@ -34,7 +56,7 @@ void printMapString(T x) {
 
 // print basic variable
 template<typename T>
-void printNor(T x) {
+void printBasic(T x) {
     std::cout << x << std::endl;
 }
 
@@ -66,10 +88,13 @@ void printType(T x) {
 }
 
 
-
 void printMap(std::map<std::string, int>);
 
 void printMap(std::map<int, int>);
+
+void printMap(std::unordered_map<int, int>);
+
+void printMap(std::unordered_map<std::string, int>);
 
 
 #endif //UNTITLED_UTILS_H
