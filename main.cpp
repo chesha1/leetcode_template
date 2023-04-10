@@ -21,14 +21,14 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-void printList(ListNode *head) {
-    ListNode *p = head;
-    while (p != nullptr) {
-        cout << p->val << "    ";
-        p = p->next;
-    }
-    cout << endl;
-}
+struct TreeNode {
+      int val;
+      TreeNode *left;
+      TreeNode *right;
+      TreeNode() : val(0), left(nullptr), right(nullptr) {}
+      TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+  };
 
 // create list with data value in vector, and return the address of head node
 ListNode *createList(vector<int> data) {
@@ -42,24 +42,50 @@ ListNode *createList(vector<int> data) {
     }
     (*(mem_addr.end() - 1))->next = nullptr;
     return mem_addr[0];
+}
 
+TreeNode *createTree(vector<vector<int> > data) {
+    vector<TreeNode *> mem_addr = {};
+    for (auto i = data.begin(); i != data.end(); i++) {
+        auto temp = *i;
+        for (auto j = temp.begin(); j!=temp.end();j++){
+            mem_addr.push_back(new TreeNode(*j));
+        }
+    }
 
+    int length = mem_addr.size();
+    for(auto i=0; i < length ; i++){
+        if (2*i<length-1){
+            mem_addr[i]->left=mem_addr[2*i+1];
+            mem_addr[i]->right=mem_addr[2*i+2];
+            if (mem_addr[2*i+1]->val==-1) mem_addr[i]->left=nullptr;
+            if (mem_addr[2*i+2]->val==-1) mem_addr[i]->right=nullptr;
+        }
+        else{
+            mem_addr[i]->left=nullptr;
+            mem_addr[i]->right=nullptr;
+        }
+        
+    }
+    return mem_addr[0];
+}
+
+void printList(ListNode *head) {
+    ListNode *p = head;
+    while (p != nullptr) {
+        cout << p->val << "    ";
+        p = p->next;
+    }
+    cout << endl;
 }
 
 
-string reverseLeftWords(string s, int n) {
-    string tmp(s, 0, n);
-    s = s.substr(n);
-    s.append(tmp);
-    return s;
-}
+
+
+
 
 int main() {
-    string s1 = "abcdefg";
-    string s2(s1, 0, 3);
-    string s3 = s1.substr(3);
-    string s4 = s1.substr(3, 5);
-    s1.append(s2);
+    vector<vector<int> > a={{1},{-1,2},{-1,-1,3,-1}};
 
 
 }
