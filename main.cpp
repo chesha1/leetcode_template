@@ -14,11 +14,10 @@ using namespace std;
 
 
 
-
-
 int main() {
-
-
+    int i=1;
+    string j =to_string(i);
+    printBasic(j);
 
 }
 
