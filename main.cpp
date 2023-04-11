@@ -13,11 +13,11 @@
 using namespace std;
 
 
-
 int main() {
-    int i=1;
-    string j =to_string(i);
-    printBasic(j);
+vector<vector<int>> nums = {{1},
+                            {2, -1}};
+TreeNode *root = createTree(nums);
+
 
 }
 

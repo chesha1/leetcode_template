@@ -8,4 +8,14 @@ STL，基本数据类型，链表
 键值对 map<string,int> 和 map<int,int>  
 变量的类型
 ### 容器
-根据vector的内容创建链表并返回头节点地址  
+根据vector<int>创建链表并返回头节点地址  
+
+根据vector<vector&lt;int&gt;>创建二叉树并返回头节点地址  
+如果值的内容为-1，表示不存在该节点  
+举例：
+```cpp
+vector<vector<int>> nums = {{1},
+                            {2, -1}};
+TreeNode *root = createTree(nums);
+```
+
