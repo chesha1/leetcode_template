@@ -35,3 +35,5 @@
 .idea/
 cmake-build-debug/
 
+# Macos
+*.DS_Store
